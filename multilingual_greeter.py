@@ -26,7 +26,13 @@ def print_language_options(lang_options: Dict[int, str]) -> None:
     Values are strings representing the name of a language
     :return: None
     """
-    pass  # remove pass statement and implement me
+    #for key in lang_options:
+    # print(f'{key}: {lang_options[key]}')
+
+    print(f"Please choose a language: \n"
+    "1: English\n"
+    "2: Spanish\n"
+    "3: Portuguese")
 
 
 def language_input() -> int:
@@ -35,7 +41,10 @@ def language_input() -> int:
 
     :return: An integer representing the language choice made by the user
     """
-    pass  # remove pass statement and implement me
+    user_input = input()
+    return int(user_input)
+
+    # remove pass statement and implement me
 
 
 def language_choice_is_valid(lang_options: Dict[int, str], lang_choice: int) -> bool:
