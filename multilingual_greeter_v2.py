@@ -1,4 +1,6 @@
 from typing import Dict
+from admin_options import Admin
+
 
 # Populate this dictionary with at least two languages.
 # Use integers for keys and strings for values.
@@ -40,8 +42,8 @@ def print_language_options(lang_options: Dict[int, str]) -> None:
     """
     print("Please choose a language: ")
     for key in lang_options:
-        print(f'{key}: {lang_options[key]}')
-
+        #print(f'{key}: {lang_options[key]}')
+        print(str(key) + ":", lang_options[key])
 
 
 def language_input() -> int:
@@ -113,12 +115,20 @@ def greet(name: str, greetings_options: Dict[int, str], lang_choice: int) -> Non
 
 
 if __name__ == '__main__':
-    print_language_options(lang_dict)
-    chosen_lang = language_input()
-    while language_choice_is_valid(lang_dict, chosen_lang) is False:
-        print("Invalid selection. Try again.")
+    ad = Admin()
+    choice = input("Enter \"a\" for Admin or \"u\" for User: ")
+    if choice == 'a':
+        ad.add_language()
+        ad.add_greeting()
+        #print("neat")
+        #admin()
+    elif choice == 'u':
+        print_language_options(lang_dict)
         chosen_lang = language_input()
+        while language_choice_is_valid(lang_dict, chosen_lang) is False:
+            print("Invalid selection. Try again.")
+            chosen_lang = language_input()
 
-    selected_prompt = f"{get_name_input(name_prompt_dict, chosen_lang)} \n"
-    chosen_name = name_input(selected_prompt)
-    greet(chosen_name, greetings_dict, chosen_lang)
+        selected_prompt = f"{get_name_input(name_prompt_dict, chosen_lang)} \n"
+        chosen_name = name_input(selected_prompt)
+        greet(chosen_name, greetings_dict, chosen_lang)
