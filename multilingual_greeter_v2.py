@@ -114,21 +114,25 @@ def greet(name: str, greetings_options: Dict[int, str], lang_choice: int) -> Non
   # remove pass statement and implement me
 
 
-if __name__ == '__main__':
+def run_program():
     ad = Admin()
-    choice = input("Enter \"a\" for Admin or \"u\" for User: ")
-    if choice == 'a':
-        ad.add_language()
-        ad.add_greeting()
-        #print("neat")
-        #admin()
-    elif choice == 'u':
-        print_language_options(lang_dict)
-        chosen_lang = language_input()
-        while language_choice_is_valid(lang_dict, chosen_lang) is False:
-            print("Invalid selection. Try again.")
+    while True:
+        choice = input("Enter \"a\" for Admin or \"u\" for User: ")
+        if choice == 'a':
+            ad.add_language()
+            ad.add_greeting()
+            #print("neat")
+            #admin()
+        elif choice == 'u':
+            print_language_options(lang_dict)
             chosen_lang = language_input()
+            while language_choice_is_valid(lang_dict, chosen_lang) is False:
+                print("Invalid selection. Try again.")
+                chosen_lang = language_input()
 
-        selected_prompt = f"{get_name_input(name_prompt_dict, chosen_lang)} \n"
-        chosen_name = name_input(selected_prompt)
-        greet(chosen_name, greetings_dict, chosen_lang)
+            selected_prompt = f"{get_name_input(name_prompt_dict, chosen_lang)} \n"
+            chosen_name = name_input(selected_prompt)
+            greet(chosen_name, greetings_dict, chosen_lang)
+
+if __name__ == '__main__':
+    run_program()

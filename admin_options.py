@@ -6,7 +6,6 @@ from typing import Dict
 
 
 class Admin:
-
     def __init__(self):
         self.lang_dict = {
             1: ["English"],
@@ -35,7 +34,7 @@ class Admin:
         value = input("enter a new language: ")
         storage_dict = {key: [value]}
         self.lang_dict.update(storage_dict)
-        self.greetings_dict.update({key:[]})
+        self.greetings_dict.update({key: []})
         print(self.lang_dict)
 
     def add_greeting(self):
@@ -43,8 +42,11 @@ class Admin:
         print(self.lang_dict)
         choice = input("select a language via number: ")
         if int(choice) in self.greetings_dict.keys():
-            self.greetings_dict[int(choice)] += input().split() #.values({int(choice): input("enter a new greeting: "),})
+            self.greetings_dict[int(choice)] += [input("enter a greeting: ")] #.values({int(choice): input("enter a new greeting: "),})
             print(self.greetings_dict)
+
+
+
 
 
 
