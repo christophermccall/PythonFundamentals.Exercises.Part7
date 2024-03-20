@@ -7,6 +7,8 @@ from typing import Dict
 
 class Admin:
     def __init__(self):
+        self.value = []
+
         self.lang_dict = {
             1: ["English"],
             2: ["Spanish"],
@@ -35,10 +37,10 @@ class Admin:
         storage_dict = {key: [value]}
         self.lang_dict.update(storage_dict)
         self.greetings_dict.update({key: []})
+        self.name_prompt_dict.update({key: []})
         print(self.lang_dict)
 
     def add_greeting(self):
-
         print(self.lang_dict)
         choice = input("select a language via number: ")
         if int(choice) in self.greetings_dict.keys():
@@ -47,6 +49,13 @@ class Admin:
 
 
 
+    def add_name_prompt(self):
+        print(self.lang_dict)
+        choice = input("select a language via number: ")
+        if int(choice) in self.name_prompt_dict.keys():
+            self.name_prompt_dict[int(choice)] += [
+                input("enter a name prompt: ")]  # .values({int(choice): input("enter a new greeting: "),})
+            print(self.name_prompt_dict)
 
 
 
