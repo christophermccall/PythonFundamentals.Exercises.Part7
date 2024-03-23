@@ -1,4 +1,7 @@
+from random import randrange
 from typing import Dict
+from admin_options import Admin
+
 
 # Populate this dictionary with at least two languages.
 # Use integers for keys and strings for values.
@@ -15,8 +18,7 @@ name_prompt_dict = {
 
         1: 'What is your name?',
         2: '¿Cómo te llamas?',
-        3: 'Qual é o seu nome?'
-
+        3: 'Qual é o seu nome?',
 }
 
 # Populate this dictionary with appropriate prompts that correspond with the ids from lang_dict.
@@ -40,8 +42,8 @@ def print_language_options(lang_options: Dict[int, str]) -> None:
     """
     print("Please choose a language: ")
     for key in lang_options:
-        print(f'{key}: {lang_options[key]}')
-
+        #print(f'{key}: {lang_options[key]}')
+        print(str(key) + ":", lang_options[key])
 
 
 def language_input() -> int:
@@ -107,19 +109,43 @@ def greet(name: str, greetings_options: Dict[int, str], lang_choice: int) -> Non
     :param lang_choice: The language the user has chosen.
     :return:
     """
+    greeting = greetings_options[lang_choice]
 
-    print(f'{greetings_options[lang_choice]} {name}')
+    print(f'{greeting[randrange(len(greeting))]} {name}' + '\n')
+    #print(f'{greetings_options[lang_choice] } {name}' + '\n')
 
   # remove pass statement and implement me
 
 
-if __name__ == '__main__':
-    print_language_options(lang_dict)
-    chosen_lang = language_input()
-    while language_choice_is_valid(lang_dict, chosen_lang) is False:
-        print("Invalid selection. Try again.")
-        chosen_lang = language_input()
+def run_program(ad):
+    while True:
+            print("press q to quit")
+            choice = input("Enter \"a\" for Admin or \"u\" for User: ")
+            if choice == 'a':
+                option = int(input("1.) add language support \n2.) main menu \n"))
+                if option == 1:
+                    ad.add_language()
+                    ad.add_name_prompt()
+                    ad.add_greeting()
+                    #print("neat")
+                    #admin()
+                elif option == 2:
+                    continue
+                else:
+                    print("not a valid option")
+                    raise ValueError
+            elif choice == 'u':
+                print_language_options(ad.lang_dict)
+                chosen_lang = language_input()
+                while language_choice_is_valid(ad.lang_dict, chosen_lang) is False:
+                    print("Invalid selection. Try again.")
+                    chosen_lang = language_input()
 
-    selected_prompt = f"{get_name_input(name_prompt_dict, chosen_lang)} \n"
-    chosen_name = name_input(selected_prompt)
-    greet(chosen_name, greetings_dict, chosen_lang)
+                selected_prompt = f"{get_name_input(ad.name_prompt_dict, chosen_lang)} \n"
+                chosen_name = name_input(selected_prompt)
+                greet(chosen_name, ad.greetings_dict, chosen_lang)
+            elif choice == 'q':
+                break
+
+if __name__ == '__main__':
+    run_program(Admin())

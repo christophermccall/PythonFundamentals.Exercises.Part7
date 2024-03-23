@@ -26,9 +26,9 @@ class Admin:
 # Populate this dictionary with appropriate prompts that correspond with the ids from lang_dict.
 # Example: Key = 1. Value = 'Hello'.
         self.greetings_dict = {
-            1: ['Hello'],
-            2: ['Hola'],
-            3: ['Olá'],
+            1: ['Hello', 'Hi There', 'What\'s up?'],
+            2: ['Hola', '¿Cómo estás?', '¿Qué pasa?'],
+            3: ['Olá', 'Oi!', 'Como é que é?'],
         }
 
     def add_language(self):
